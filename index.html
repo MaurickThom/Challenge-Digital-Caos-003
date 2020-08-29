@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <title>Insure - Landing Page</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root{
+      --max-width:1200px;
+      --header-width:4rem;
+      --z-back: -10;
+      --z-normal: 1;
+      --z-tooltip: 10;
+      --z-fixed: 100;
+      --z-modal: 1000;
+      --width-menu-icon:30px;
+      --height-menu-icon:4px;
+      --margin-icon : 5px;
+      --width-scroll-top : 0;
+      --height-scroll-top : 0;
+
+      --bar-width: 27px;
+      --bar-height: 4.5px;
+      --bar-spacing: 8px;
+    }
+
+    body {
+      font-family: 'Karla', sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-weight: 400;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+    }
+
+    .menu-wrapper {
+      width: var(--bar-width);
+      height: calc(var(--bar-height) + calc(var(--bar-spacing)*2));
+      cursor: pointer;
+    }
+
+    .hamburger-menu,
+    .hamburger-menu:after,
+    .hamburger-menu:before {
+      width: var(--bar-width);
+      height: var(--bar-height);
+      border-radius: 10px;
+    }
+
+    .hamburger-menu {
+      position: relative;
+      transform: translateY(var(--bar-spacing));
+      background: #525252;
+      transition: all 0ms .12s;
+    }
+    .hamburger-menu.animate {
+      background: rgba(255, 255, 255, 0);
+    }
+
+    .hamburger-menu:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom:var(--bar-spacing);
+      background: #525252;
+      transition: bottom .12s .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hamburger-menu:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: var(--bar-spacing);
+      background: #525252;
+      transition: top .12s .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hamburger-menu.animate:after {
+      top: 0;
+      transform: rotate(45deg);
+      transition: top .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s .12s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hamburger-menu.animate:before {
+      bottom: 0;
+      transform: rotate(-45deg);
+      transition: bottom .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s .12s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .l-container{
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .main-header{
+      position: fixed;
+      z-index: var(--z-fixed);
+      top: 0;
+      width: 100%;
+      height: var(--header-width);
+      border-bottom: 1px solid var(--border-color);
+      background:white;
+    }
+    .main-header__block{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .main-header__nav {
+      position: fixed;
+      top: var(--header-width);
+      right: -100vw;
+      bottom: 0;
+      width: 100vw;
+      background: var(--text-color);
+      background: #000;
+      z-index: var(--z-tooltip);
+      transition: right .3s;
+      background-image: url(images/bg-pattern-mobile-nav.svg);
+      background-repeat: no-repeat;
+      background-position: right bottom;
+      background-size: 100%;
+      background-color: #2B292E;
+    }
+    li,a,ul{
+      list-style: none;
+      text-decoration: none;
+    }
+    .main-header__link{
+      color: #fff;
+    }
+    .is-open{ right: 0; }
+    .main-header__ul{
+      padding: 20px;
+    }
+    .main-header__item{
+      width: 100%;
+      text-align: center;
+      padding: 5px 0;
+    }
+    .main-header__link {
+      color: #fff;
+      display: block;
+      padding: 15px 0;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .main-header__link--button{
+      border: 1.5px solid hsl(216, 30%, 68%);
+    }
+    /*.hamburger{
+      width: 40px;
+      border:1px solid red;
+    }
+    .hamburger .line{
+      width: var(--width-menu-icon);
+      height: var(--height-menu-icon);
+      background-color: #222;
+      display: block;
+      margin: var(--margin-icon) auto;
+      transition: all 0.18s ease-in-out;
+    }
+
+    .hamburger:hover{
+      cursor: pointer;
+    }
+    .hamburger.is-active .line:nth-child(2){
+      opacity: 0;
+    }
+
+    .hamburger.is-active .line:nth-child(1){
+      transform: translateY(
+        calc(var(--margin-icon) + var(--height-menu-icon))
+      ) rotate(45deg);
+    }
+
+    .hamburger.is-active .line:nth-child(3){
+      transform: translateY(
+        calc(calc(var(--margin-icon) + var(--height-menu-icon)) * -1)
+      ) rotate(-45deg);
+    }*/
+
+    @media screen and (min-width:680px){
+      .main-header__nav{
+        position: initial;
+        background-color: initial;
+        width: auto;
+        height: auto;
+        background-image: none;
+      }
+      .main-header__ul.l-container{
+        padding: 0;
+      }
+      .menu-wrapper{
+        display: none;
+      }
+      .main-header__item{
+        display: flex;
+        margin-left:1.5rem;
+        width: initial;
+      }
+      .main-header__link{
+        margin: auto;
+        min-width: min-content;
+        font-size: 16px;
+        padding: 0;
+        color:hsl(273, 4%, 51%);
+      }
+      .main-header__ul{
+        height: 100%;
+        display: flex;
+      }
+      .main-header__link--button{
+        padding: 10px 20px;
+        transition: .3s all ease;
+      }
+      .main-header__link--button:hover {
+        background: #2B292E;
+        color: #fff;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="main-header__block l-container">
+      <img src="./images/logo.svg" alt="" class="main-header__logo">
+      <!-- <div class="hamburger" id="hamburger-1">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div> -->
+      <div class="menu-wrapper">
+        <div class="hamburger-menu"></div>
+      </div>
+      <nav class="main-header__nav">
+        <ul class="main-header__ul l-container">
+          <li class="main-header__item">
+            <a href="#" class="main-header__link">HOW WE WORK</a>
+          </li>
+          <li class="main-header__item">
+            <a href="#" class="main-header__link">BLOG</a>
+          </li>
+          <li class="main-header__item">
+            <a href="#" class="main-header__link">ACCOUNT</a>
+          </li>
+          <li class="main-header__item">
+            <a href="#" class="main-header__link main-header__link--button">VIEW PLANS</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+  </main>
+  <footer></footer>
+  <script>
+    const menu = document.querySelector('.menu-wrapper')
+    menu.addEventListener('click', () => {
+      document.querySelector('.hamburger-menu').classList.toggle('animate')
+      document.querySelector('.main-header__nav').classList.toggle('is-open')
+    });
+
+  </script>
+</body>
+
+</html>
