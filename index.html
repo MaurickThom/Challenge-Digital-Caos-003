@@ -1,185 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous"
+    />
+    <title>Insure - Landing Page</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-  <title>Insure - Landing Page</title>
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+      :root {
+        --max-width: 1200px;
+        --header-width: 4rem;
+        --z-back: -10;
+        --z-normal: 1;
+        --z-tooltip: 10;
+        --z-fixed: 100;
+        --z-modal: 1000;
+        --width-menu-icon: 30px;
+        --height-menu-icon: 4px;
+        --margin-icon: 5px;
+        --width-scroll-top: 0;
+        --height-scroll-top: 0;
 
-    :root{
-      --max-width:1200px;
-      --header-width:4rem;
-      --z-back: -10;
-      --z-normal: 1;
-      --z-tooltip: 10;
-      --z-fixed: 100;
-      --z-modal: 1000;
-      --width-menu-icon:30px;
-      --height-menu-icon:4px;
-      --margin-icon : 5px;
-      --width-scroll-top : 0;
-      --height-scroll-top : 0;
+        --bar-width: 27px;
+        --bar-height: 4.5px;
+        --bar-spacing: 8px;
+      }
 
-      --bar-width: 27px;
-      --bar-height: 4.5px;
-      --bar-spacing: 8px;
-    }
+      body {
+        font-family: "Karla", sans-serif;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-weight: 400;
+      }
 
-    body {
-      font-family: 'Karla', sans-serif;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      font-weight: 400;
-    }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "DM Serif Display", serif;
+        font-weight: 400;
+      }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-    }
+      .menu-wrapper {
+        width: var(--bar-width);
+        height: calc(var(--bar-height) + calc(var(--bar-spacing) * 2));
+        cursor: pointer;
+      }
 
-    .menu-wrapper {
-      width: var(--bar-width);
-      height: calc(var(--bar-height) + calc(var(--bar-spacing)*2));
-      cursor: pointer;
-    }
+      .hamburger-menu,
+      .hamburger-menu:after,
+      .hamburger-menu:before {
+        width: var(--bar-width);
+        height: var(--bar-height);
+        border-radius: 10px;
+      }
+      .main-banner__img{
+        width: 100%;
+      }
+      .hamburger-menu {
+        position: relative;
+        transform: translateY(var(--bar-spacing));
+        background: #525252;
+        transition: all 0ms 0.12s;
+      }
 
-    .hamburger-menu,
-    .hamburger-menu:after,
-    .hamburger-menu:before {
-      width: var(--bar-width);
-      height: var(--bar-height);
-      border-radius: 10px;
-    }
+      .hamburger-menu.animate {
+        background: rgba(255, 255, 255, 0);
+      }
 
-    .hamburger-menu {
-      position: relative;
-      transform: translateY(var(--bar-spacing));
-      background: #525252;
-      transition: all 0ms .12s;
-    }
-    .hamburger-menu.animate {
-      background: rgba(255, 255, 255, 0);
-    }
+      .hamburger-menu:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: var(--bar-spacing);
+        background: #525252;
+        transition: bottom 0.12s 0.12s cubic-bezier(0.23, 1, 0.32, 1),
+          transform 0.12s cubic-bezier(0.23, 1, 0.32, 1);
+      }
 
-    .hamburger-menu:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom:var(--bar-spacing);
-      background: #525252;
-      transition: bottom .12s .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1);
-    }
+      .hamburger-menu:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: var(--bar-spacing);
+        background: #525252;
+        transition: top 0.12s 0.12s cubic-bezier(0.23, 1, 0.32, 1),
+          transform 0.12s cubic-bezier(0.23, 1, 0.32, 1);
+      }
 
-    .hamburger-menu:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: var(--bar-spacing);
-      background: #525252;
-      transition: top .12s .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1);
-    }
+      .hamburger-menu.animate:after {
+        top: 0;
+        transform: rotate(45deg);
+        transition: top 0.12s cubic-bezier(0.23, 1, 0.32, 1),
+          transform 0.12s 0.12s cubic-bezier(0.23, 1, 0.32, 1);
+      }
 
-    .hamburger-menu.animate:after {
-      top: 0;
-      transform: rotate(45deg);
-      transition: top .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s .12s cubic-bezier(0.23, 1, 0.32, 1);
-    }
+      .hamburger-menu.animate:before {
+        bottom: 0;
+        transform: rotate(-45deg);
+        transition: bottom 0.12s cubic-bezier(0.23, 1, 0.32, 1),
+          transform 0.12s 0.12s cubic-bezier(0.23, 1, 0.32, 1);
+      }
 
-    .hamburger-menu.animate:before {
-      bottom: 0;
-      transform: rotate(-45deg);
-      transition: bottom .12s cubic-bezier(0.23, 1, 0.32, 1), transform .12s .12s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .l-container{
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    .main-header{
-      position: fixed;
-      z-index: var(--z-fixed);
-      top: 0;
-      width: 100%;
-      height: var(--header-width);
-      border-bottom: 1px solid var(--border-color);
-      background:white;
-    }
-    .main-header__block{
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .main-header__nav {
-      position: fixed;
-      top: var(--header-width);
-      right: -100vw;
-      bottom: 0;
-      width: 100vw;
-      background: var(--text-color);
-      background: #000;
-      z-index: var(--z-tooltip);
-      transition: right .3s;
-      background-image: url(images/bg-pattern-mobile-nav.svg);
-      background-repeat: no-repeat;
-      background-position: right bottom;
-      background-size: 100%;
-      background-color: #2B292E;
-    }
-    li,a,ul{
-      list-style: none;
-      text-decoration: none;
-    }
-    .main-header__link{
-      color: #fff;
-    }
-    .is-open{ right: 0; }
-    .main-header__ul{
-      padding: 20px;
-    }
-    .main-header__item{
-      width: 100%;
-      text-align: center;
-      padding: 5px 0;
-    }
-    .main-header__link {
-      color: #fff;
-      display: block;
-      padding: 15px 0;
-      font-size: 20px;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    .main-header__link--button{
-      border: 1.5px solid hsl(216, 30%, 68%);
-    }
-    /*.hamburger{
+      .l-container {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .main-header {
+        position: fixed;
+        z-index: var(--z-fixed);
+        top: 0;
+        width: 100%;
+        height: var(--header-width);
+        border-bottom: 1px solid var(--border-color);
+        background: white;
+      }
+
+      .main-header__block {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .main-header__nav {
+        position: fixed;
+        top: var(--header-width);
+        right: -100vw;
+        bottom: 0;
+        width: 100%;
+        background: var(--text-color);
+        background: #000;
+        z-index: var(--z-tooltip);
+        transition: right 0.3s;
+        background-image: url(images/bg-pattern-mobile-nav.svg);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: 100%;
+        background-color: #2b292e;
+      }
+
+      li,
+      a,
+      ul {
+        list-style: none;
+        text-decoration: none;
+      }
+
+      .main-header__link {
+        color: #fff;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .is-open {
+        right: 0;
+      }
+
+      .main-header__ul {
+        padding: 20px;
+      }
+
+      .main-header__item {
+        width: 100%;
+        text-align: center;
+        padding: 5px 0;
+      }
+
+      .main-header__link {
+        color: #fff;
+        display: block;
+        padding: 15px 0;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .main-header__link--button {
+        border: 1.5px solid hsl(216, 30%, 68%);
+      }
+
+      /*.hamburger{
       width: 40px;
       border:1px solid red;
     }
@@ -210,92 +253,587 @@
         calc(calc(var(--margin-icon) + var(--height-menu-icon)) * -1)
       ) rotate(-45deg);
     }*/
+      .main-banner-wrapper.l-container {
+        padding: 0;
+      }
 
-    @media screen and (min-width:680px){
-      .main-header__nav{
-        position: initial;
-        background-color: initial;
-        width: auto;
-        height: auto;
-        background-image: none;
+      .main-container {
+        margin-top: var(--header-width);
       }
-      .main-header__ul.l-container{
-        padding: 0;
+
+      .main-banner {
+        background-color: hsl(256, 26%, 20%);
       }
-      .menu-wrapper{
-        display: none;
+
+      .main-banner__description {
+        position: relative;
+        background-image: url(images/bg-pattern-intro-left-mobile.svg);
+        background-repeat: no-repeat;
+        background-position: top left;
+        color: #fff;
+        padding: 80px 20px;
+        padding-top: 50px;
+        text-align: center;
       }
-      .main-header__item{
-        display: flex;
-        margin-left:1.5rem;
-        width: initial;
-      }
-      .main-header__link{
-        margin: auto;
-        min-width: min-content;
-        font-size: 16px;
-        padding: 0;
-        color:hsl(273, 4%, 51%);
-      }
-      .main-header__ul{
+
+      .main-banner__description::before {
+        content: "";
+        position: absolute;
+        background-image: url(images/bg-pattern-intro-right-mobile.svg);
+        width: 100%;
         height: 100%;
-        display: flex;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        transform: translateY(40%);
       }
-      .main-header__link--button{
-        padding: 10px 20px;
-        transition: .3s all ease;
+
+      .main-banner__title {
+        position: relative;
+        padding: 10px 0;
+        font-size: 40px;
       }
-      .main-header__link--button:hover {
-        background: #2B292E;
+
+      .main-banner__content {
+        padding-bottom: 25px;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+
+      .main-banner__button {
+        display: inline-block;
+        color: #fff;
+        padding: 10px 25px;
+        border: 1.5px solid #ffffff;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: 0.5s all ease;
+      }
+      .features-container {
+        margin-top: 80px;
+        margin-bottom: 100px;
+        text-align: center;
+      }
+
+      .features-container__title {
+        position: relative;
+        padding: 30px 0;
+        font-size: 42px;
+        text-align: center;
+      }
+
+      .features-container__title::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 130px;
+        height: 2px;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: hsl(273, 4%, 51%);
+      }
+
+      .feature {
+        margin: 20px 0;
+        padding: 10px 0;
+      }
+
+      .feature__icon {
+        display: inline-block;
+        background: hsl(216, 30%, 68%);
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        border-radius: 50%;
+        color: #fff;
+        text-align: center;
+        font-size: 20px;
+      }
+
+      .feature__title {
+        padding: 15px 0;
+        font-size: 24px;
+      }
+
+      .feature p {
+        line-height: 2;
+        color: hsl(273, 4%, 51%);
+      }
+      .article-container {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 50px;
+      }
+      .article {
+        position: relative;
+        background: hsl(256, 26%, 20%)
+          url(images/bg-pattern-how-we-work-mobile.svg);
+        background-repeat: no-repeat;
+        background-position: top right;
+        padding: 60px 0;
+        text-align: center;
         color: #fff;
       }
-    }
+      .article__title {
+        font-size: 42px;
+        padding: 20px 0;
+      }
+      .article__button {
+        display: inline-block;
+        color: #fff;
+        padding: 10px 25px;
+        border: 1.5px solid #ffffff;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: 0.5s all ease;
+      }
+      .article__button:hover {
+        color: #2b292e;
+        background: #fff;
+      }
+      .footer-menu {
+        padding: 20px 0;
+        text-align: center;
+      }
+      .footer-header__img{
+        margin:auto;
+      }
+      .footer-header__social{
+        margin-top: 1.5rem;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        padding-bottom: 0;
+      }
+      .social__item{
+        margin: auto 16px;
+      }
+      .social__link{
+        color: hsl(273,4%,51%);
+        font-size: 25px;
+      }
+      .footer-menu::before {
+        content: "";
+        display: block;
+        height: 2px;
+        background-color: #d9d9d9;
+        margin-bottom: 20px;
+      }
+      .footer-nav{
+        padding: 20px 0;
+      }
 
-  </style>
-</head>
+      .footer-nav__item {
+          padding: 10px 0;
+          font-weight: 700;
+          text-transform: uppercase;
+          text-align: center;
+      }
+      .footer-nav__link{
+        color: #2B292E;;
+      }
+      .footer-nav__item--title {
+        color: hsl(273, 4%, 51%);
+        margin-bottom: 20px;
+      }
+      @media screen and (min-width: 680px) {
+        .main-header__nav {
+          position: initial;
+          background-color: initial;
+          width: auto;
+          height: auto;
+          background-image: none;
+        }
 
-<body>
-  <header class="main-header">
-    <div class="main-header__block l-container">
-      <img src="./images/logo.svg" alt="" class="main-header__logo">
-      <!-- <div class="hamburger" id="hamburger-1">
+        .main-banner-wrapper {
+          display: flex;
+        }
+
+        .main-header__ul.l-container {
+          padding: 0;
+        }
+
+        .menu-wrapper {
+          display: none;
+        }
+
+        .main-header__item {
+          display: flex;
+          margin-left: 1.5rem;
+          width: initial;
+        }
+
+        .main-header__link {
+          margin: auto;
+          min-width: min-content;
+          font-size: 16px;
+          padding: 0;
+          color: hsl(273, 4%, 51%);
+        }
+
+        .main-header__ul {
+          height: 100%;
+          display: flex;
+        }
+
+        .main-header__link--button {
+          padding: 10px 20px;
+          transition: 0.3s all ease;
+        }
+
+        .main-header__link--button:hover {
+          background: #2b292e;
+          color: #fff;
+        }
+
+        .main-banner__description,
+        .main-banner__description::before {
+          background: none;
+        }
+
+        .main-banner__description::before {
+          display: none;
+        }
+
+        .main-banner::after {
+          background-image: url(images/bg-pattern-intro-right-desktop.svg);
+          background-position: top right;
+          transform: translateY(-10%);
+          background-size: contain;
+        }
+
+        .main-banner::before,
+        .main-banner::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 50%;
+          background-repeat: no-repeat;
+          pointer-events: none;
+        }
+
+        .main-banner::before {
+          background-image: url(images/bg-pattern-intro-left-desktop.svg);
+          transform: translate(-2.5%,60%);
+        }
+        .features-container {
+          text-align: initial;
+        }
+        .features-container__title{
+          text-align: initial;
+        }
+        .features-container__title::before{
+          left: 0;
+          transform: translateX(0);
+        }
+        .feature-grid{
+          display: flex;
+          justify-content: space-between;
+
+        }
+        .article{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          text-align: initial;
+          background-image: url(images/bg-pattern-how-we-work-desktop.svg);
+          padding: 40px 0;
+        }
+        .article__title{
+          max-width: 400px;
+        }
+        .footer-menu::before {
+          display: none;
+        }
+        .main-footer::before{
+          content: "";
+          display: block;
+          height: 2px;
+          background-color: #d9d9d9;
+        }
+        .footer-header {
+          padding: 1rem;
+          padding-bottom: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0;
+        }
+        .footer-header__img {
+          margin: 0;
+        }
+        .footer-menu {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          padding: 1rem;
+          padding-top: 0;
+          margin-top: 0;
+
+        }
+        .footer-nav__item{
+          text-align: initial;
+        }
+        .main-banner{
+          height: 520px;
+        }
+        .main-banner-wrapper{
+          position: relative;
+          height: 100%;
+          align-items: center;
+          justify-content: space-around;
+        }
+        .main-banner-wrapper.l-container {
+          padding: 1rem;
+        }
+        .main-banner__img{
+          position: relative;
+          z-index: 2;
+        }
+        .main-banner__copy{
+          order: -1;
+          background: none;
+          max-width: 50%;
+        }
+        .main-banner__description{
+          text-align: initial;
+        }
+      }
+      @media screen and (min-width: 950px){
+        .main-banner__img{
+          height: 550px;
+          transform:translateY(20%);
+          width: auto;
+        }
+        .features-container {
+          margin-top: 10rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="main-header">
+      <div class="main-header__block l-container">
+        <img src="./images/logo.svg" alt="" class="main-header__logo" />
+        <!-- <div class="hamburger" id="hamburger-1">
         <span class="line"></span>
         <span class="line"></span>
         <span class="line"></span>
       </div> -->
-      <div class="menu-wrapper">
-        <div class="hamburger-menu"></div>
+        <div class="menu-wrapper">
+          <div class="hamburger-menu"></div>
+        </div>
+        <nav class="main-header__nav">
+          <ul class="main-header__ul l-container">
+            <li class="main-header__item">
+              <a href="#" class="main-header__link">HOW WE WORK</a>
+            </li>
+            <li class="main-header__item">
+              <a href="#" class="main-header__link">BLOG</a>
+            </li>
+            <li class="main-header__item">
+              <a href="#" class="main-header__link">ACCOUNT</a>
+            </li>
+            <li class="main-header__item">
+              <a href="#" class="main-header__link main-header__link--button"
+                >VIEW PLANS</a
+              >
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav class="main-header__nav">
-        <ul class="main-header__ul l-container">
-          <li class="main-header__item">
-            <a href="#" class="main-header__link">HOW WE WORK</a>
-          </li>
-          <li class="main-header__item">
-            <a href="#" class="main-header__link">BLOG</a>
-          </li>
-          <li class="main-header__item">
-            <a href="#" class="main-header__link">ACCOUNT</a>
-          </li>
-          <li class="main-header__item">
-            <a href="#" class="main-header__link main-header__link--button">VIEW PLANS</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
-
-  </main>
-  <footer></footer>
-  <script>
-    const menu = document.querySelector('.menu-wrapper')
-    menu.addEventListener('click', () => {
-      document.querySelector('.hamburger-menu').classList.toggle('animate')
-      document.querySelector('.main-header__nav').classList.toggle('is-open')
-    });
-
-  </script>
-</body>
-
+    </header>
+    <main class="main-container">
+      <section class="main-banner">
+        <div class="main-banner-wrapper l-container">
+          <picture>
+            <source
+              srcset="./images/image-intro-desktop.jpg"
+              media="(min-width:950px)"
+            />
+            <source
+              srcset="./images/image-intro-mobile.jpg"
+              media="(min-width:800px)"
+            />
+            <source
+              srcset="./images/image-intro-desktop.jpg"
+              media="(min-width:430px)"
+            />
+            <img
+              src="images/image-intro-mobile.jpg"
+              alt="a family walking on the sidewalk"
+              class="main-banner__img"
+            />
+          </picture>
+          <div class="main-banner__copy">
+            <div class="main-banner__description">
+              <h1 class="main-banner__title">
+                Lorem ipsum dolor, sit amet consectetur
+              </h1>
+              <p class="main-banner__content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
+                sit dicta dolore necessitatibus ipsum laborum explicabo velit
+                quia. Sit enim, necessitatibus voluptas perferendis fugit a esse
+                architecto obcaecati nam. Sunt.
+              </p>
+              <a href="#" class="main-banner__button">VIEW PLANS</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="features-container l-container">
+        <h1 class="features-container__title">We're different</h1>
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="feature__icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="feature__title">Snappy Process</h3>
+            <p class="feature__description">
+              Our application process can be completed in minutes, not hours.
+              Don’t get stuck filling in tedious forms.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h3 class="feature__title">Affordable Prices</h3>
+            <p class="feature__description">
+              We don’t want you worrying about high monthly costs. Our prices
+              may be low, but we still offer the best coverage possible.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <h3 class="feature__title">People First</h3>
+            <p class="feature__description">
+              Our plans aren’t full of conditions and clauses to prevent
+              payouts. We make sure you’re covered when you need it.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="article-container l-container">
+        <article class="article">
+          <h1 class="article__title">Find out more about how we work</h1>
+          <a href="#" class="article__button">HOW WE WORK</a>
+        </article>
+      </section>
+    </main>
+    <footer class="main-footer">
+      <div class="footer-wrapper l-container">
+        <div class="footer-header">
+          <img src="./images/logo.svg" alt="" class="footer-header__img" />
+          <ul class="footer-header__social">
+            <li class="social__item">
+              <a href="#" class="social__link"
+                ><i class="fab fa-facebook-square"></i
+              ></a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link"
+                ><i class="fab fa-pinterest"></i
+              ></a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu">
+          <ul class="footer-nav">
+            <li class="footer-nav__item footer-nav__item--title">
+              Our Company
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">How we work</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Why Insure?</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">View plans</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Reviews</a>
+            </li>
+          </ul>
+          <ul class="footer-nav">
+            <li class="footer-nav__item footer-nav__item--title">
+              Our Company
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Help me</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">FAQ</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">View plans</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Reviews</a>
+            </li>
+          </ul>
+          <ul class="footer-nav">
+            <li class="footer-nav__item footer-nav__item--title">
+              Our Company
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">How we work</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Why Insure?</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">View plans</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Reviews</a>
+            </li>
+          </ul>
+          <ul class="footer-nav">
+            <li class="footer-nav__item footer-nav__item--title">
+              Our Company
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">How we work</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Why Insure?</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">View plans</a>
+            </li>
+            <li class="footer-nav__item">
+              <a href="#" class="footer-nav__link">Reviews</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const menu = document.querySelector(".menu-wrapper");
+      menu.addEventListener("click", () => {
+        document.querySelector(".hamburger-menu").classList.toggle("animate");
+        document.querySelector(".main-header__nav").classList.toggle("is-open");
+      });
+    </script>
+  </body>
 </html>
